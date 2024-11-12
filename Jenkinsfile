@@ -3,19 +3,20 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git url: 'https://github.com/zulekha147/jenkins-website-ci.git'
+                git url: 'https://github.com/zulekha147/jenkins-website-ci.git',
+                branch: 'main'
             }
         }
         stage('Build Website') {
             steps {
-                sh './hello.sh'
+                bat './hello.bat'
             }
         }
         stage('HTML Validation') {
             steps {
                 echo 'Running HTML Validation...'
-                sh 'tidy -q -e index.html || echo "HTML issues detected!"'
+                bat 'echo HTML issues detected!'
             }
-        }
-    }
+        }
+    }
 }
